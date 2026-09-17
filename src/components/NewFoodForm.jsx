@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { MEAL_LIST } from '../constants.jsx';
+import { MEAL_LIST, REACTIONS } from '../constants.jsx';
 
 // App -> NewFoodForm
 // props: entryData?, handleCancelEdit
-function NewFoodForm({entryData, onCloseEdit, handleSubmit}) {
+function NewFoodForm({entryData, onCloseEdit, handleUpdateMeal, handleAddNewMeal}) {
   const isEditing = entryData != null;
   // const [isDisabled, setIsDisabled] = useState(true);
 
@@ -16,13 +16,23 @@ function NewFoodForm({entryData, onCloseEdit, handleSubmit}) {
 
     return `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
   };
-  console.log('EDITING', isEditing);
-  const [selectedMeal, setSelectedMeal] = useState(isEditing ? entryData.meal : 'Choose One');
+
   const [foodInput, setFoodInput] = useState(isEditing ? entryData.food : '');
   const [notesInput, setNotesInput] = useState(isEditing ? entryData.notes : '');
+  const [selectedMeal, setSelectedMeal] = useState(isEditing ? entryData.meal : 'Choose One');
+  const [selectedReactions, setSelectedReactions] = useState(isEditing ? entryData.reactions : []);
   const [timeInput, setTimeInput] = useState(isEditing ? entryData.time : getCurrentTime());
 
-  console.log('note', notesInput);
+  // Handle reaction select: add item to []
+  const handleReactionSelect = (checkedValue) => {
+    // when clicked, if checkedValue in [], remove, else add
+    if (selectedReactions.includes(checkedValue)) {
+      setSelectedReactions((prevState) => prevState.filter(reaction => reaction !== checkedValue));
+    } else {
+      setSelectedReactions([...selectedReactions, checkedValue]);
+    }
+  };
+
   const submitHandler = (e) => {
     e.preventDefault();
 
@@ -32,12 +42,12 @@ function NewFoodForm({entryData, onCloseEdit, handleSubmit}) {
       time: timeInput,
       meal: selectedMeal,
       food: foodInput,
-      reaction: [''],
+      reactions: selectedReactions,
       notes: notesInput
     };
-    // handleCancelEdit();
     onCloseEdit();
-    handleSubmit(meal);
+    // console.log('Submit', meal);
+    isEditing ? handleUpdateMeal(meal) : handleAddNewMeal(meal);
   };
 
   return (
@@ -74,6 +84,22 @@ function NewFoodForm({entryData, onCloseEdit, handleSubmit}) {
           value={timeInput}
           onChange={(e) => setTimeInput(e.target.value)}
         />
+      </div>
+      <div>
+        {
+          REACTIONS.map((reaction, index) => (
+            <div key={index}>
+              <label htmlFor={index.toString()}>{reaction}</label>
+              <input
+                type="checkbox"
+                id={index.toString()}
+                name={reaction}
+                value={reaction}
+                checked={selectedReactions.includes(reaction)}
+                onChange={() => handleReactionSelect(reaction)}/>
+            </div>
+          ))
+        }
       </div>
       <div className="form-control">
         <label>Notes</label>

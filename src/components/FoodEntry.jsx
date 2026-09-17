@@ -1,7 +1,7 @@
 import FoodEntryDisplay from './FoodEntryDisplay.jsx';
 import { useState } from 'react';
 
-function FoodEntry({entryData, onDeleteMeal, handleSubmit}) {
+function FoodEntry({entryData, onDeleteMeal, handleUpdateMeal}) {
   const [isEditing, setIsEditing] = useState(false);
 
   const handleEditClick = () => {
@@ -26,7 +26,7 @@ function FoodEntry({entryData, onDeleteMeal, handleSubmit}) {
         onDeleteEntryClick={handleDeleteClick}
         onCloseEdit={handleClose}
         isEditing={isEditing}
-        handleSubmit={handleSubmit}
+        handleUpdateMeal={handleUpdateMeal}
       />
     </div>
   );

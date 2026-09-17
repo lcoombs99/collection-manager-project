@@ -1,5 +1,13 @@
 export const MEAL_LIST = ["Choose One", "Breakfast", "Lunch", "Dinner", "Snack"]
 
+export const REACTIONS = [
+  'Itching / Hives',
+  'Swelling',
+  'Throat Tightness',
+  'Headache',
+  'Stomach Upset'
+];
+
 export const INITIAL_DATA = [
   {
     id: crypto.randomUUID(),
@@ -7,7 +15,7 @@ export const INITIAL_DATA = [
     time: '08:30',
     meal: 'Breakfast',
     food: 'Scrambled eggs, toast',
-    reaction: ['hives'],
+    reactions: ['Itching / Hives'],
     notes: 'Itching started at 9:30'
   },
   {
@@ -16,8 +24,8 @@ export const INITIAL_DATA = [
     time: '11:30',
     meal: 'Lunch',
     food: 'Pizza',
-    reaction: ['headache'],
-    notes: null
+    reactions: ['Swelling'],
+    notes: ''
   },
   {
     id: crypto.randomUUID(),
@@ -25,7 +33,7 @@ export const INITIAL_DATA = [
     time: '16:30',
     meal: 'Dinner',
     food: 'Potato',
-    reaction: [],
-    notes: null
+    reactions: [],
+    notes: ''
   }
 ];

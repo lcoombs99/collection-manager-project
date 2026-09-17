@@ -25,12 +25,13 @@ function App() {
 
   // handleAddNewMeal: Add new meal to list
   const handleAddNewMeal = (meal) => {
-    setFormIsOpen((prevState) => !prevState);
+    setFormIsOpen(false); // not sure why prevState => !prevState not working here specifically
     setEntries((prevEntries) => [meal, ...prevEntries]);
   };
 
   // handleUpdateMeal: find and update the existing meal (by id)
   const handleUpdateMeal = (meal) => {
+
     setEntries((prevEntries) =>
       prevEntries.map((entry) =>
         entry.id === meal.id ? meal : entry
@@ -47,7 +48,6 @@ function App() {
 
   // handleOpenForm: open form to enter New Entry
   const toggleFormState = () => {
-    console.log("Close");
     setFormIsOpen((prevState) => !prevState);
   }
 
@@ -61,11 +61,11 @@ function App() {
       }
 
       {/* Add New Food form - display conditionally */}
-      {formIsOpen ? <NewFoodForm data={null} onCloseEdit={toggleFormState} handleSubmit={handleAddNewMeal}/> : null}
+      {formIsOpen ? <NewFoodForm data={null} onCloseEdit={toggleFormState} handleAddNewMeal={handleAddNewMeal}/> : null}
 
       {/* Entry List */}
       <h3>Food Log</h3>
-      <JournalEntryList entries={entries} onDeleteMeal={handleDeleteMealById} handleSubmit={handleUpdateMeal}/>
+      <JournalEntryList entries={entries} onDeleteMeal={handleDeleteMealById} handleUpdateMeal={handleUpdateMeal}/>
     </>
   );
 }

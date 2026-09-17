@@ -1,13 +1,13 @@
 // display current data, edit and delete buttons
 import NewFoodForm from './NewFoodForm.jsx';
 
-function FoodEntryDisplay({entryData, onEditEntryClick, onDeleteEntryClick, onCloseEdit, isEditing, handleSubmit}) {
+function FoodEntryDisplay({entryData, onEditEntryClick, onDeleteEntryClick, onCloseEdit, isEditing, handleUpdateMeal}) {
 
   return (
     <div className="card">
       <h3>{entryData.food ?? null}</h3>
       {isEditing ?
-        <NewFoodForm onCloseEdit={onCloseEdit} handleSubmit={handleSubmit} entryData={entryData}/> :
+        <NewFoodForm onCloseEdit={onCloseEdit} handleUpdateMeal={handleUpdateMeal} entryData={entryData}/> :
         <div>
           <div className="entry">{entryData.date} {entryData.time}</div>
           <div className="entry">{entryData.meal}</div>
