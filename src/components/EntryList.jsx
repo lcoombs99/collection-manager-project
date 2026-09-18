@@ -1,4 +1,4 @@
-import FoodEntry from './FoodEntry.jsx';
+import EntryCard from './EntryCard.jsx';
 
 function EntryList({entries, onDeleteMeal, handleUpdateMeal}) {
   //props: entries, onDeleteMeal, handleUpdateMeal
@@ -8,7 +8,7 @@ function EntryList({entries, onDeleteMeal, handleUpdateMeal}) {
       <h3>Food Log</h3>
 
       {entries.map((entry) =>
-        <FoodEntry entryData={entry} key={entry.id} onDeleteMeal={onDeleteMeal} handleUpdateMeal={handleUpdateMeal}/>
+        <EntryCard entryData={entry} key={entry.id} onDeleteMeal={onDeleteMeal} handleUpdateMeal={handleUpdateMeal}/>
       )}
     </div>
   );
