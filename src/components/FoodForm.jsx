@@ -30,6 +30,9 @@ function FoodForm({entryData, onCloseEdit, handleUpdateMeal, handleAddNewMeal}) 
     }
   };
 
+  // Super basic validation for creating new entry
+  const isFormValid = dateInput !== '' && timeInput !== '' && selectedMeal !== 'Choose One' && foodInput.trim() !== '';
+
   const submitHandler = (e) => {
     e.preventDefault();
 
@@ -106,8 +109,7 @@ function FoodForm({entryData, onCloseEdit, handleUpdateMeal, handleAddNewMeal}) 
           onChange={(e) => setNotesInput(e.target.value)}
         />
         <button onClick={onCloseEdit} className="button">Cancel</button>
-        {/*<button disabled={isDisabled} onClick={submitHandler} className="button">Submit</button>*/}
-        <button onClick={submitHandler} className="button">Submit</button>
+        <button disabled={!isFormValid} onClick={submitHandler} className="button">Submit</button>
       </div>
     </div>
   );
