@@ -1,27 +1,24 @@
 import { useState } from 'react';
-import { MEAL_LIST, REACTIONS } from '../constants.jsx';
-
-// App -> NewFoodForm
-// props: entryData?, handleCancelEdit
-function NewFoodForm({entryData, onCloseEdit, handleUpdateMeal, handleAddNewMeal}) {
+import { MEAL_LIST, REACTIONS_LIST } from '../constants.jsx';
+// create: <FoodForm data={null} onCloseEdit={toggleFormState} handleAddNewMeal={handleAddNewMeal}/>
+// edit:  <FoodForm onCloseEdit={onCloseEdit} handleUpdateMeal={handleUpdateMeal} entryData={entryData}/> :
+function FoodForm({entryData, onCloseEdit, handleUpdateMeal, handleAddNewMeal}) {
   const isEditing = entryData != null;
-  // const [isDisabled, setIsDisabled] = useState(true);
-
-  const [dateInput, setDateInput] = useState(isEditing ? entryData.date :
-    new Date().toLocaleDateString('en-CA')
-  );
-
-  const getCurrentTime = () => {
-    const now = new Date();
-
-    return `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
-  };
-
   const [foodInput, setFoodInput] = useState(isEditing ? entryData.food : '');
   const [notesInput, setNotesInput] = useState(isEditing ? entryData.notes : '');
   const [selectedMeal, setSelectedMeal] = useState(isEditing ? entryData.meal : 'Choose One');
   const [selectedReactions, setSelectedReactions] = useState(isEditing ? entryData.reactions : []);
   const [timeInput, setTimeInput] = useState(isEditing ? entryData.time : getCurrentTime());
+  const [dateInput, setDateInput] = useState(isEditing ? entryData.date :
+    new Date().toLocaleDateString('en-CA')
+  );
+
+  // used old style function for hoisting
+  function getCurrentTime() {
+    const now = new Date();
+
+    return `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+  }
 
   // Handle reaction select: add item to []
   const handleReactionSelect = (checkedValue) => {
@@ -87,7 +84,7 @@ function NewFoodForm({entryData, onCloseEdit, handleUpdateMeal, handleAddNewMeal
       </div>
       <div>
         {
-          REACTIONS.map((reaction, index) => (
+          REACTIONS_LIST.map((reaction, index) => (
             <div key={index}>
               <label htmlFor={index.toString()}>{reaction}</label>
               <input
@@ -116,4 +113,4 @@ function NewFoodForm({entryData, onCloseEdit, handleUpdateMeal, handleAddNewMeal
   );
 }
 
-export default NewFoodForm;
+export default FoodForm;

@@ -1,7 +1,5 @@
-  // App -> Header
-  // role: Display Page Title, Button to reset data (temp)
-  // props: onResetData
 function Header({onResetData}) {
+  // props: onResetData
 
   return (
     <div>

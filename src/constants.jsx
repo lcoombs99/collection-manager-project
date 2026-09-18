@@ -1,6 +1,6 @@
 export const MEAL_LIST = ["Choose One", "Breakfast", "Lunch", "Dinner", "Snack"]
 
-export const REACTIONS = [
+export const REACTIONS_LIST = [
   'Itching / Hives',
   'Swelling',
   'Throat Tightness',
