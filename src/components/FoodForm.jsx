@@ -31,6 +31,7 @@ function FoodForm({entryData, onCloseEdit, handleUpdateMeal, handleAddNewMeal}) 
   };
 
   // Super basic validation for creating new entry
+  // TODO: Error Handling
   const isFormValid = dateInput !== '' && timeInput !== '' && selectedMeal !== 'Choose One' && foodInput.trim() !== '';
 
   const submitHandler = (e) => {
@@ -51,8 +52,7 @@ function FoodForm({entryData, onCloseEdit, handleUpdateMeal, handleAddNewMeal}) 
   };
 
   return (
-    <div className="new-food-form">
-
+    <div className="form">
       <div className="form-control">
         <label>Meal</label>
         <select value={entryData?.meal ?? selectedMeal} onChange={(e) => setSelectedMeal(e.target.value)}>
@@ -85,11 +85,10 @@ function FoodForm({entryData, onCloseEdit, handleUpdateMeal, handleAddNewMeal}) 
           onChange={(e) => setTimeInput(e.target.value)}
         />
       </div>
-      <div>
+      <div className="reactions">
         {
           REACTIONS_LIST.map((reaction, index) => (
             <div key={index}>
-              <label htmlFor={index.toString()}>{reaction}</label>
               <input
                 type="checkbox"
                 id={index.toString()}
@@ -97,6 +96,7 @@ function FoodForm({entryData, onCloseEdit, handleUpdateMeal, handleAddNewMeal}) 
                 value={reaction}
                 checked={selectedReactions.includes(reaction)}
                 onChange={() => handleReactionSelect(reaction)}/>
+              <label htmlFor={index.toString()}>{reaction}</label>
             </div>
           ))
         }
@@ -105,9 +105,12 @@ function FoodForm({entryData, onCloseEdit, handleUpdateMeal, handleAddNewMeal}) 
         <label>Notes</label>
         <input
           type="text"
+          maxLength={100}
           value={notesInput}
           onChange={(e) => setNotesInput(e.target.value)}
         />
+      </div>
+      <div className="card-actions">
         <button onClick={onCloseEdit} className="button">Cancel</button>
         <button disabled={!isFormValid} onClick={submitHandler} className="button">Submit</button>
       </div>

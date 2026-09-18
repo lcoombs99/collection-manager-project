@@ -45,14 +45,14 @@ function App() {
   };
 
   return (
-    <>
+    <div>
       <Header onResetData={handleResetData}/>
       {/*Filter or search bar*/}
       {!formIsOpen && <button onClick={toggleFormState} className="button">Add New Entry</button>}
       {formIsOpen ?
         <FoodForm entryData={null} onCloseEdit={toggleFormState} handleAddNewMeal={handleAddNewMeal}/> : null}
       <EntryList entries={entries} onDeleteMeal={handleDeleteMealById} handleUpdateMeal={handleUpdateMeal}/>
-    </>
+    </div>
   );
 }
 

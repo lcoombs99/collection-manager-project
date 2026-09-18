@@ -2,7 +2,9 @@ import FoodForm from './FoodForm.jsx';
 
 function EntryEdit({entryData, handleUpdateMeal, onCloseEdit}) {
   return (
-    <FoodForm onCloseEdit={onCloseEdit} handleUpdateMeal={handleUpdateMeal} entryData={entryData}/>
+    <div className="card">
+      <FoodForm onCloseEdit={onCloseEdit} handleUpdateMeal={handleUpdateMeal} entryData={entryData}/>
+    </div>
   );
 }
 
