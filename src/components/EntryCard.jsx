@@ -2,7 +2,9 @@ import EntryDisplay from './EntryDisplay.jsx';
 import { useState } from 'react';
 import EntryEdit from './EntryEdit.jsx';
 
-function EntryCard({entryData, onDeleteMeal, handleUpdateMeal}) {
+function EntryCard({entryData, handleDeleteMeal, handleUpdateMeal}) {
+  // props: entryData, handleDeleteMeal, handleUpdateMeal
+
   const [isEditing, setIsEditing] = useState(false);
 
   const toggleFormState = () => {
@@ -10,16 +12,19 @@ function EntryCard({entryData, onDeleteMeal, handleUpdateMeal}) {
   };
 
   const handleDeleteClick = () => {
-    // TODO: Display modal rather than alert with option to confirm
-    alert('This item will be deleted.');
-    onDeleteMeal(entryData.id);
+    alert('This entry will be deleted.');
+    handleDeleteMeal(entryData.id);
   };
 
   return (
-    <div>
+    <div className="card">
       {
         isEditing ?
-            <EntryEdit onCloseEdit={toggleFormState} handleUpdateMeal={handleUpdateMeal} entryData={entryData}/> :
+          <EntryEdit
+            onCloseEdit={toggleFormState}
+            handleUpdateMeal={handleUpdateMeal}
+            entryData={entryData}
+          /> :
           <EntryDisplay
             entryData={entryData}
             onEditEntryClick={toggleFormState}

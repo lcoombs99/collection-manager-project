@@ -2,7 +2,6 @@ function EntryDisplay({entryData, onEditEntryClick, onDeleteEntryClick}) {
 // props: entryData, onEditEntryClick, onDeleteEntryClick
 
   const dateOptions = {
-    // weekday: "long",
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -17,7 +16,7 @@ function EntryDisplay({entryData, onEditEntryClick, onDeleteEntryClick}) {
   const formattedTime = new Date(entryData.date).toLocaleTimeString('en-US', timeOptions);
 
   return (
-    <div className="card">
+    <div className="entry-display" >
       <div className="entry">{formattedDate} <strong>{formattedTime}</strong></div>
       <div className="entry entry-meal">{entryData.meal}</div>
       <h4>{entryData.food}</h4>

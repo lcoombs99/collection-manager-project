@@ -1,151 +1,196 @@
-/*.form {*/
-/*  margin: 2rem 20rem 1rem 20rem;*/
+/* Styling adapted with assistance from ChatGPT (9/18/26):
+Prompt: I would like to edit an existing card component to use an existing form,
+ how can I leverage CSS to fit my existing form in the card component?
+I adjusted CSS Grid suggestions to meet specific app requirements
+ */
 
-/*}*/
+.form-grid {
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+
+    display: grid;
+    /* need this so form can fit into the smaller edit entry cards */
+    grid-template-columns: minmax(0, 2fr) minmax(120px, 1fr) minmax(100px, 1fr);
+    gap: 1rem;
+
+    margin: auto;
+}
+
+.food-input,
+.notes-input,
+.reactions {
+    grid-column: 1/-1;
+}
+
 .form-control {
-  margin-bottom: 1rem;
+    margin-bottom: 1rem;
 }
 
 .form-control label {
-  margin-bottom: 0.35rem;
-  margin-right: 0.35rem;
-  font-weight: 600;
+    margin-bottom: 0.35rem;
+    margin-right: 0.35rem;
+    font-weight: 600;
 }
 
 .form-control input,
 .form-control select {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font: inherit;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font: inherit;
 }
 
 .error-message {
-  margin: 0 0 0.5rem;
-  font-size: 0.8rem;
-  color: #b42318;
+    margin: 0 0 0.5rem;
+    font-size: 0.8rem;
+    color: #b42318;
 }
 
 .reactions {
-  margin-bottom: 1rem;
+    margin-bottom: 0.25rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
 }
 
 .reactions > div {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-bottom: 0.1rem;
 }
 
 .reactions label {
-  display: inline;
-  font-weight: normal;
+    display: inline;
+    font-weight: normal;
+    font-size: 0.8rem;
 }
 
 .reactions input {
-  width: auto;
+    width: auto;
 }
 
-.entry-section {
-  /*border: solid 1px purple;*/
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding: 0 1rem;
-}
-
-.entry-section > h4 {
-  margin-bottom: 0.5rem;
+.entry-list-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
 }
 
 .entry-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1rem;
-  align-items: stretch;
-}
-.entry {
-  margin-bottom: 0.4rem;
-  color: #666;
-  font-size: 0.9rem;
+    display: grid;
+    /* min max */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    align-items: stretch;
 }
 
+/* special formatting when displaying the form */
+/* Edit card spans the entire entry grid */
+.entry-list > .card:has(.form-grid) {
+    grid-column: 1 / -1;
+    grid-row: 1;
+}
+
+.entry {
+    margin-bottom: 0.4rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.entry-display {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
 .entry-meal {
-  font-weight: 600;
-  margin-bottom: 0.25rem;
-  font-style: italic;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    font-style: italic;
 }
 
 .list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  list-style: none;
-  padding: 0;
-  margin: 0.75rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    list-style: none;
+    padding: 0;
+    margin: 0.75rem 0;
 }
 
 .list li {
-  padding: 0.2rem 0.7rem;
-  border-radius: 900px;
-  background: #f1f1f1;
-  font-size: 0.7rem;
+    padding: 0.2rem 0.7rem;
+    border-radius: 900px;
+    background: #f1f1f1;
+    font-size: 0.7rem;
 }
 
 .notes {
-  margin-top: 0.75rem;
-  margin-bottom: 1rem;
+    margin-top: 0.75rem;
+    margin-bottom: 1rem;
 }
 
 /* distinctive writing */
 .notes strong {
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #777;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #777;
 }
 
 .notes p {
-  margin: 0.25rem 0 0;
-  font-size: 0.7rem;
-  font-style: italic;
+    margin: 0.25rem 0 0;
+    font-size: 0.7rem;
+    font-style: italic;
 }
 
 /* letting grid control card height for now (entire row) */
 .card {
-  height: 100%;
-  box-sizing: border-box;
+    height: 100%;
+    box-sizing: border-box;
 
-  padding: 1.25rem;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  background: white;
+    padding: 1.25rem;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background: white;
 
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
-/* edit and delete button container */
 .card-actions {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: auto;
+    grid-column: 1 / -1;
+    justify-content: flex-end;
+    display: flex;
+    gap: 0.5rem;
+    margin-top: auto;
+}
+
+.form-grid .card-actions {
+    margin-top: 0;
 }
 
 .button {
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 6px;
-  background: aliceblue;
-  cursor: pointer;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    background: aliceblue;
+    cursor: pointer;
 }
 
 .button:hover {
-  opacity: 0.85;
+    opacity: 0.85;
 }
 
 .button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+    opacity: 0.5;
+    cursor: not-allowed;
 }
+
+.feature {
+    color: dodgerblue;
+}
+

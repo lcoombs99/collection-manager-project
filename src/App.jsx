@@ -10,9 +10,7 @@ function App() {
   const [entries, setEntries] = useState(() => {
     // saving entries to local storage so they persist. Maybe only for development
     const savedEntries = localStorage.getItem('foodJournal');
-    return savedEntries
-      ? JSON.parse(savedEntries)
-      : INITIAL_DATA;
+    return savedEntries ? JSON.parse(savedEntries) : INITIAL_DATA;
   });
 
   useEffect(() => {
@@ -47,11 +45,11 @@ function App() {
   return (
     <div>
       <Header onResetData={handleResetData}/>
-      {/*Filter or search bar*/}
-      {!formIsOpen && <button onClick={toggleFormState} className="button">Add New Entry</button>}
+      {!formIsOpen &&
+        <button onClick={toggleFormState} className="button">Add New Entry</button>}
       {formIsOpen ?
         <FoodForm entryData={null} onCloseEdit={toggleFormState} handleAddNewMeal={handleAddNewMeal}/> : null}
-      <EntryList entries={entries} onDeleteMeal={handleDeleteMealById} handleUpdateMeal={handleUpdateMeal}/>
+      <EntryList entries={entries} handleDeleteMeal={handleDeleteMealById} handleUpdateMeal={handleUpdateMeal}/>
     </div>
   );
 }

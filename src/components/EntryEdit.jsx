@@ -1,9 +1,14 @@
 import FoodForm from './FoodForm.jsx';
 
 function EntryEdit({entryData, handleUpdateMeal, onCloseEdit}) {
+  // props: entryData, handleUpdateMeal, onCloseEdit
   return (
-    <div className="card">
-      <FoodForm onCloseEdit={onCloseEdit} handleUpdateMeal={handleUpdateMeal} entryData={entryData}/>
+    <div>
+      <FoodForm
+        onCloseEdit={onCloseEdit}
+        handleUpdateMeal={handleUpdateMeal}
+        entryData={entryData}
+      />
     </div>
   );
 }

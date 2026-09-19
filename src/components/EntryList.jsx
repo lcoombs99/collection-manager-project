@@ -1,14 +1,19 @@
 import EntryCard from './EntryCard.jsx';
 
-function EntryList({entries, onDeleteMeal, handleUpdateMeal}) {
-  //props: entries, onDeleteMeal, handleUpdateMeal
+function EntryList({entries, handleUpdateMeal, handleDeleteMeal}) {
+  //props: entries, handleDeleteMeal, handleUpdateMeal
 
   return (
-    <div className="entry-section">
-      <h3>Food Log</h3>
+    <div className="entry-list-container">
+      <h3>My Food Log</h3>
       <div className="entry-list">
         {entries.map((entry) =>
-          <EntryCard entryData={entry} key={entry.id} onDeleteMeal={onDeleteMeal} handleUpdateMeal={handleUpdateMeal}/>
+          <EntryCard
+            key={entry.id}
+            entryData={entry}
+            handleUpdateMeal={handleUpdateMeal}
+            handleDeleteMeal={handleDeleteMeal}
+          />
         )}
       </div>
     </div>
