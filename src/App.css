@@ -49,8 +49,8 @@
   padding: 0 1rem;
 }
 
-.entry-section > h3 {
-  margin-bottom: 1rem;
+.entry-section > h4 {
+  margin-bottom: 0.5rem;
 }
 
 .entry-list {
@@ -68,10 +68,10 @@
 .entry-meal {
   font-weight: 600;
   margin-bottom: 0.25rem;
+  font-style: italic;
 }
 
 .list {
-  /*border: solid 1px green;*/
   display: flex;
   flex-wrap: wrap;
   gap: 0.4rem;
