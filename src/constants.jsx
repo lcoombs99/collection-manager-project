@@ -7,7 +7,6 @@ export const REACTIONS_LIST = [
   'Headache',
   'Stomach Upset'
 ];
-
 export const INITIAL_DATA = [
   {
     id: crypto.randomUUID(),

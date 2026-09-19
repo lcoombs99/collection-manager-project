@@ -22,6 +22,12 @@
   font: inherit;
 }
 
+.error-message {
+  margin: 0 0 0.5rem;
+  font-size: 0.8rem;
+  color: #b42318;
+}
+
 .reactions {
   margin-bottom: 1rem;
 }
@@ -102,6 +108,8 @@
 
 .notes p {
   margin: 0.25rem 0 0;
+  font-size: 0.7rem;
+  font-style: italic;
 }
 
 /* letting grid control card height for now (entire row) */

@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MEAL_LIST, REACTIONS_LIST } from '../constants.jsx';
-// create: <FoodForm data={null} onCloseEdit={toggleFormState} handleAddNewMeal={handleAddNewMeal}/>
-// edit:  <FoodForm onCloseEdit={onCloseEdit} handleUpdateMeal={handleUpdateMeal} entryData={entryData}/> :
+
 function FoodForm({entryData, onCloseEdit, handleUpdateMeal, handleAddNewMeal}) {
   const isEditing = entryData != null;
   const [foodInput, setFoodInput] = useState(isEditing ? entryData.food : '');
@@ -10,19 +9,18 @@ function FoodForm({entryData, onCloseEdit, handleUpdateMeal, handleAddNewMeal}) 
   const [selectedReactions, setSelectedReactions] = useState(isEditing ? entryData.reactions : []);
   const [timeInput, setTimeInput] = useState(isEditing ? entryData.time : getCurrentTime());
   const [dateInput, setDateInput] = useState(isEditing ? entryData.date :
-    new Date().toLocaleDateString('en-CA')
+    new Date().toLocaleDateString('en-US')
   );
+  const [errorMessage, setErrorMessage] = useState(null);
 
-  // used old style function for hoisting
+  // used old style function for hoisting to keep state separate from functions
   function getCurrentTime() {
     const now = new Date();
 
     return `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
   }
 
-  // Handle reaction select: add item to []
   const handleReactionSelect = (checkedValue) => {
-    // when clicked, if checkedValue in [], remove, else add
     if (selectedReactions.includes(checkedValue)) {
       setSelectedReactions((prevState) => prevState.filter(reaction => reaction !== checkedValue));
     } else {
@@ -30,9 +28,29 @@ function FoodForm({entryData, onCloseEdit, handleUpdateMeal, handleAddNewMeal}) 
     }
   };
 
-  // Super basic validation for creating new entry
-  // TODO: Error Handling
-  const isFormValid = dateInput !== '' && timeInput !== '' && selectedMeal !== 'Choose One' && foodInput.trim() !== '';
+  // validate fields
+  const validateFormState = () => {
+    // required fields, foodInput, date, time, selected meal
+    if (foodInput.trim() === '') {
+      setErrorMessage('Please enter a food');
+      return false;
+    }
+    if (dateInput.trim() === '') {
+      setErrorMessage('Please enter a valid date');
+      return false;
+    }
+    if (timeInput.trim() === '') {
+      setErrorMessage('Please enter a valid time');
+      return false;
+    }
+    if (selectedMeal === 'Choose One') {
+      setErrorMessage('Please select a meal');
+      return false;
+    } else {
+      setErrorMessage(null);
+      return true;
+    }
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -46,8 +64,15 @@ function FoodForm({entryData, onCloseEdit, handleUpdateMeal, handleAddNewMeal}) 
       reactions: selectedReactions,
       notes: notesInput
     };
+
+    const isValid = validateFormState();
+
+    if (!isValid) {
+      // not valid, message set and don't continue to submission or form close
+      return;
+    }
+
     onCloseEdit();
-    // console.log('Submit', meal);
     isEditing ? handleUpdateMeal(meal) : handleAddNewMeal(meal);
   };
 
@@ -110,9 +135,11 @@ function FoodForm({entryData, onCloseEdit, handleUpdateMeal, handleAddNewMeal}) 
           onChange={(e) => setNotesInput(e.target.value)}
         />
       </div>
+      <p className="error-message">{errorMessage}</p>
       <div className="card-actions">
         <button onClick={onCloseEdit} className="button">Cancel</button>
-        <button disabled={!isFormValid} onClick={submitHandler} className="button">Submit</button>
+        <button onClick={submitHandler} className="button">Submit</button>
+        {/*<button disabled={!isFormValid} onClick={submitHandler} className="button">Submit</button>*/}
       </div>
     </div>
   );
