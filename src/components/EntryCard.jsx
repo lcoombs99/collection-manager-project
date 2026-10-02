@@ -12,7 +12,6 @@ function EntryCard({entryData, handleDeleteMeal, handleUpdateMeal}) {
   };
 
   const handleDeleteClick = () => {
-    alert('This entry will be deleted.');
     handleDeleteMeal(entryData.id);
   };
 

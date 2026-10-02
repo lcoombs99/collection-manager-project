@@ -43,7 +43,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="app-div">
       <Header onResetData={handleResetData}/>
       {!formIsOpen &&
         <button onClick={toggleFormState} className="button">Add New Entry</button>}
