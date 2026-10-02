@@ -181,6 +181,15 @@ I adjusted CSS Grid suggestions to meet specific app requirements
     cursor: pointer;
 }
 
+.button-warning {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #fde8e7;
+    color: #b42318;
+}
+
 .button:hover {
     opacity: 0.85;
 }
@@ -196,12 +205,8 @@ I adjusted CSS Grid suggestions to meet specific app requirements
 
 .modal-backdrop {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-
-    background: rgba(0, 0, 0, 0.6);
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
     z-index: 100;
 }
 
@@ -210,13 +215,20 @@ I adjusted CSS Grid suggestions to meet specific app requirements
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
-    width: min(90%, 500px);
-    padding: 2rem;
-
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 12px;
     background: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    /*higher than backdrop by 1*/
     z-index: 101;
+}
+
+.modal p {
+    margin: 0 0 1.5rem;
+    color: #666;
+}
+
+.modal button {
+    margin: 0 .75rem 0 0;
 }

@@ -3,6 +3,7 @@ import Modal from './Modal.jsx';
 
 function EntryDisplay({entryData, onEditEntryClick, onDeleteEntryClick}) {
 // props: entryData, onEditEntryClick, onDeleteEntryClick
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModalState = () => {
@@ -46,7 +47,7 @@ function EntryDisplay({entryData, onEditEntryClick, onDeleteEntryClick}) {
         }
         <div className="card-actions">
           <button className="button" onClick={onEditEntryClick}>Edit</button>
-          <button className="button" onClick={toggleModalState}>Delete</button>
+          <button className="button-warning" onClick={toggleModalState}>Delete</button>
         </div>
       </div>
     </>

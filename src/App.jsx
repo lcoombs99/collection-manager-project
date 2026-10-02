@@ -8,7 +8,6 @@ import NewFoodForm from './components/NewFoodForm.jsx';
 function App() {
   const [formIsOpen, setFormIsOpen] = useState(false);
   const [entries, setEntries] = useState(() => {
-    // saving entries to local storage so they persist. Maybe only for development
     const savedEntries = localStorage.getItem('foodJournal');
     return savedEntries ? JSON.parse(savedEntries) : INITIAL_DATA;
   });

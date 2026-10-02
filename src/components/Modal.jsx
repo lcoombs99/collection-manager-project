@@ -8,8 +8,8 @@ const ConfirmationModal = props => {
   return (
     <div className="modal">
       <p>Are you sure you want to delete this entry?</p>
-      <button onClick={props.onCancel}>Cancel</button>
-      <button onClick={props.onConfirm}>Confirm</button>
+      <button className="button" onClick={props.onCancel}>Cancel</button>
+      <button className="button-warning" onClick={props.onConfirm}>Delete</button>
     </div>
   );
 };
@@ -23,7 +23,7 @@ function Modal(props) {
       )}
 
       {ReactDom.createPortal(
-        <ConfirmationModal onCancel={props.onCancel} onConfirm={props.onConfirm} />,
+        <ConfirmationModal onCancel={props.onCancel} onConfirm={props.onConfirm}/>,
         document.getElementById('modal-overlay-root')
       )}
     </>

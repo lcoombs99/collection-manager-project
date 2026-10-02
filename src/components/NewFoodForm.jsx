@@ -2,14 +2,13 @@ import { useEffect, useReducer } from 'react';
 import { MEAL_LIST, REACTIONS_LIST } from '../constants.jsx';
 import { formReducer, getCurrentDate, getCurrentTime, initialState } from './formReducer.js';
 
-
 function NewFoodForm({entryData, onCloseEdit, handleUpdateMeal, handleAddNewMeal}) {
   // useReducer
   const [state, dispatch] = useReducer(formReducer, initialState);
   const isEditing = entryData != null;
 
-  // use effect---I'm not sure this is completely necessary, honestly since entryData
-  // however, it will initialize the form with existing data on load if editing.
+  // use effect---I'm not sure this is completely necessary, honestly, since entryData
+  // however, it does initialize the form with existing data only on load if editing.
   useEffect(() => {
     dispatch({
       type: 'INITIALIZE_FORM',
@@ -47,7 +46,7 @@ function NewFoodForm({entryData, onCloseEdit, handleUpdateMeal, handleAddNewMeal
   };
 
   const validateForm = () => {
-    console.log('VALIDATE FORM');
+    // console.log('VALIDATE FORM');
     if (state.selectedMeal === 'Choose One') {
       return {
         isValid: false,
@@ -117,7 +116,6 @@ function NewFoodForm({entryData, onCloseEdit, handleUpdateMeal, handleAddNewMeal
     <div className="form-grid">
       <div className="form-control">
         <label>Meal</label>
-
         <select
           value={state.selectedMeal}
           onChange={(e) =>
@@ -160,7 +158,6 @@ function NewFoodForm({entryData, onCloseEdit, handleUpdateMeal, handleAddNewMeal
           }
         />
       </div>
-
       <div className="form-control food-input">
         <label>Food</label>
         <input
