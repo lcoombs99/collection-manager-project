@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { INITIAL_DATA } from './constants.jsx';
 import EntryList from './components/EntryList.jsx';
 import Header from './components/Header.jsx';
-import FoodForm from './components/FoodForm.jsx';
+import NewFoodForm from './components/NewFoodForm.jsx';
 
 function App() {
   const [formIsOpen, setFormIsOpen] = useState(false);
@@ -13,6 +13,7 @@ function App() {
     return savedEntries ? JSON.parse(savedEntries) : INITIAL_DATA;
   });
 
+  // preexisting useEffect....
   useEffect(() => {
     localStorage.setItem('foodJournal', JSON.stringify(entries));
   }, [entries]);
@@ -48,7 +49,7 @@ function App() {
       {!formIsOpen &&
         <button onClick={toggleFormState} className="button">Add New Entry</button>}
       {formIsOpen ?
-        <FoodForm entryData={null} onCloseEdit={toggleFormState} handleAddNewMeal={handleAddNewMeal}/> : null}
+        <NewFoodForm entryData={null} onCloseEdit={toggleFormState} handleAddNewMeal={handleAddNewMeal}/> : null}
       <EntryList entries={entries} handleDeleteMeal={handleDeleteMealById} handleUpdateMeal={handleUpdateMeal}/>
     </div>
   );

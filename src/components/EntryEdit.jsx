@@ -1,10 +1,10 @@
-import FoodForm from './FoodForm.jsx';
+import NewFoodForm from './NewFoodForm.jsx';
 
 function EntryEdit({entryData, handleUpdateMeal, onCloseEdit}) {
   // props: entryData, handleUpdateMeal, onCloseEdit
   return (
     <>
-      <FoodForm
+      <NewFoodForm
         onCloseEdit={onCloseEdit}
         handleUpdateMeal={handleUpdateMeal}
         entryData={entryData}

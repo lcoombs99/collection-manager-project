@@ -6,7 +6,6 @@ function EntryDisplay({entryData, onEditEntryClick, onDeleteEntryClick}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModalState = () => {
-    console.log('CONFIRM CANCEL');
     setIsModalOpen((prevState) => !prevState);
   };
 
@@ -21,8 +20,11 @@ function EntryDisplay({entryData, onEditEntryClick, onDeleteEntryClick}) {
     minute: 'numeric'
   };
 
-  const formattedDate = new Date(entryData.date).toLocaleDateString('en-US', dateOptions);
-  const formattedTime = new Date(entryData.date).toLocaleTimeString('en-US', timeOptions);
+  const formattedDate = new Date(entryData.date)
+    .toLocaleDateString('en-US', dateOptions);
+
+  const formattedTime = new Date(`1970-01-01T${entryData.time}`)
+    .toLocaleTimeString('en-US', timeOptions);
 
   return (
     <>
